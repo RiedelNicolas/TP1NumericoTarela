@@ -1,7 +1,7 @@
 from constant import *
 
 #inversion>0
-def valor_actual_neto(inversion_en_pesos, flujo_de_caja, interes, años):
+def valor_actual_neto(interes, inversion_en_pesos=inversion_inicial_en_dolares*45, flujo_de_caja=flujo_de_caja, años=VIDA_UTIL_PROYECTO):
     van = -inversion_en_pesos
     for año in range(1,años+1):
         van += flujo_de_caja/((1+interes)**año)
@@ -13,20 +13,32 @@ def biseccion_van(error_porcentual):
     #VAN(interes=0)>0
     #VAN(interes=1)<0
 
-    valor_menor=0
-    valor_mayor=1
-    medio=(valor_mayor+valor_menor)/2
-    raiz_actual=medio
-    cota_de_error=(valor_mayor-valor_menor)/2
+    interes_menor=0
+    interes_mayor=1
+    interes_medio=(interes_mayor+interes_menor)/2
+    #raiz_actual=medio
+    cota_de_error=(interes_mayor-interes_menor)/2
 
-    while((100*cota_de_error/raiz_actual)>error_porcentual)
-        if condition:
-            pass
+    while((100*cota_de_error/interes_medio)>error_porcentual):
+        if (valor_actual_neto(interes_menor)*valor_actual_neto(interes_medio)>0):
+            interes_menor=interes_medio
+        if (valor_actual_neto(interes_menor)*valor_actual_neto(interes_medio)<0):
+            interes_mayor=interes_medio
+        interes_medio=(interes_mayor+interes_menor)/2
+        cota_de_error=(interes_mayor-interes_menor)/2
+
+    return interes_medio
+
+def punto_fijo_van(error_porcentual, semilla):
+    return
+
 
 
 
 def TP1():
-
-    print(valor_actual_neto(inversion_inicial_en_dolares*45, flujo_de_caja, 1, VIDA_UTIL_PROYECTO))
+    print(inversion_inicial_en_dolares*45)
+    interes_inflexion=biseccion_van(5)
+    print(interes_inflexion)
+    print(valor_actual_neto(interes_inflexion))
 
 TP1()
