@@ -46,7 +46,7 @@ def punto_fijo_van(error_porcentual, interes_inicial):
         interes_siguiente = interes_actual-valor_actual_neto(interes_actual)
         cota_error =  abs (interes_siguiente-interes_actual)
         interes_actual=interes_siguiente
-        print(cota_error)
+        #print(cota_error)
 
     print("Error relativo", abs(100*cota_error/interes_siguiente))
 
@@ -62,5 +62,5 @@ def TP1():
     interes_punto_fijo=punto_fijo_van(0.1, interes_biseccion)
     print("Interes punto fijo:", interes_punto_fijo)
     print("VAN punto fijo:", valor_actual_neto(interes_punto_fijo))
-
+    #https://youtu.be/5kC4_iEXhGc
 TP1()
