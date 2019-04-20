@@ -1,1 +1,1 @@
-print "agus gato"
+print "hola agus  amigo "
