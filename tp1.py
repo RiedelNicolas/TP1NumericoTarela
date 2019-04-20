@@ -39,14 +39,13 @@ def punto_fijo_van(error_porcentual, valor_inicial):
     valor_siguiente = valor_actual-valor_actual_neto(valor_actual)
     cota_error =  abs (valor_siguiente-valor_actual)
 
-    while((100*cota_error/valor_siguiente) > error_porcentual):
-        valor_temporal = valor_inicial
+    while((abs(100*cota_error/valor_siguiente)) > error_porcentual):
+        #valor_temporal = valor_inicial
         valor_siguiente = valor_actual-valor_actual_neto(valor_actual)
         cota_error =  abs (valor_siguiente-valor_actual)
+        print(cota_error)
 
     return valor_siguiente
-
-
 
 
 def TP1():
