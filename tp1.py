@@ -1,22 +1,32 @@
 from constant import *
 
-
-
-
 #inversion>0
-def valor_actual_neto(inversion, flujo_de_caja, interes, años):
-    van = -inversion
-    for año in range(1,años+1)
-        van +=  flujo_de_caja/((1+interes)**año))
+def valor_actual_neto(inversion_en_pesos, flujo_de_caja, interes, años):
+    van = -inversion_en_pesos
+    for año in range(1,años+1):
+        van += flujo_de_caja/((1+interes)**año)
 
     return van
 
+#https://www.math.ubc.ca/~pwalls/math-python/roots-optimization/bisection/
+def biseccion_van(error_porcentual):
+    #VAN(interes=0)>0
+    #VAN(interes=1)<0
+
+    valor_menor=0
+    valor_mayor=1
+    medio=(valor_mayor+valor_menor)/2
+    raiz_actual=medio
+    cota_de_error=(valor_mayor-valor_menor)/2
+
+    while((100*cota_de_error/raiz_actual)>error_porcentual)
+        if condition:
+            pass
+
+
+
 def TP1():
 
-    inversion_inicial_en_dolares=POTENCIA_TOTAL_INSTALADA*COSTO_POTENCIA_A_INSTALAR
-    factor_de_uso=(0.18*PADRON)/100000
-    ahorro_energia=POTENCIA_TOTAL_INSTALADA * HORAS_POR_AÑO * factor_de_uso * COSTO_ELECTRICIDAD_CONSUMIDA
-    ahorro_potencia=POTENCIA_TOTAL_INSTALADA * 0.3 *COSTO_POTENCIA_CONSUMIDA * MESES_POR_AÑO
-    ahorros=ahorro_energia+ahorro_potencia
+    print(valor_actual_neto(inversion_inicial_en_dolares*45, flujo_de_caja, 1, VIDA_UTIL_PROYECTO))
 
-    flujo_de_caja= (ahorros-COSTOS_OPERACION)*(1-IMPUESTO_GANANCIAS)
+TP1()
