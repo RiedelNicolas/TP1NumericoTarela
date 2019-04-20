@@ -37,16 +37,18 @@ def punto_fijo_van(error_porcentual, interes_inicial):
     interes_actual =  interes_inicial
 
     interes_siguiente = interes_actual-valor_actual_neto(interes_actual)
-    print("Valor siguiente", interes_siguiente)
+    #print("Valor siguiente", interes_siguiente)
     cota_error =  abs (interes_siguiente-interes_actual)
     interes_actual=interes_siguiente
-    print("Error", cota_error)
+    #print("Error", cota_error)
 
     while((abs(100*cota_error/interes_siguiente)) > error_porcentual):
         interes_siguiente = interes_actual-valor_actual_neto(interes_actual)
         cota_error =  abs (interes_siguiente-interes_actual)
         interes_actual=interes_siguiente
-        #print(cota_error)
+        print(cota_error)
+
+    print("Error relativo", abs(100*cota_error/interes_siguiente))
 
     return interes_siguiente
 
