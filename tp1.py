@@ -30,6 +30,7 @@ def biseccion_van(error_porcentual):
     return interes_medio
 
 def punto_fijo_van(error_porcentual, semilla):
+
     return
 
 
