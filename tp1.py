@@ -8,7 +8,7 @@ def valor_actual_neto(interes, inversion_en_pesos=inversion_inicial_en_dolares*4
 
     return van
 
-#https://www.math.ubc.ca/~pwalls/math-python/roots-optimization/bisection/
+
 def biseccion_van(error_porcentual):
     #VAN(interes=0)>0
     #VAN(interes=1)<0
@@ -29,17 +29,34 @@ def biseccion_van(error_porcentual):
 
     return interes_medio
 
-def punto_fijo_van(error_porcentual, semilla):
 
-    return
+
+
+def punto_fijo_van(error_porcentual, valor_inicial):
+
+    valor_actual =  valor_inicial
+
+    valor_siguiente = valor_actual-valor_actual_neto(valor_actual)
+    cota_error =  abs (valor_siguiente-valor_actual)
+
+    while((100*cota_error/valor_siguiente) > error_porcentual):
+        valor_temporal = valor_inicial
+        valor_siguiente = valor_actual-valor_actual_neto(valor_actual)
+        cota_error =  abs (valor_siguiente-valor_actual)
+
+    return valor_siguiente
 
 
 
 
 def TP1():
     print(inversion_inicial_en_dolares*45)
-    interes_inflexion=biseccion_van(5)
-    print(interes_inflexion)
-    print(valor_actual_neto(interes_inflexion))
+    interes_biseccion=biseccion_van(5)
+    print("Interes biseccion:",interes_biseccion)
+    print("VAN biseccion:", valor_actual_neto(interes_biseccion))
+
+    interes_punto_fijo=punto_fijo_van(0.1, interes_biseccion)
+    print("Interes punto fijo:", interes_punto_fijo)
+    print("VAN punto fijo:", valor_actual_neto(interes_punto_fijo))
 
 TP1()
