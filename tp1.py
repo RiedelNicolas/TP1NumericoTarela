@@ -32,20 +32,25 @@ def biseccion_van(error_porcentual):
 
 
 
-def punto_fijo_van(error_porcentual, valor_inicial):
+def punto_fijo_van(error_porcentual, interes_inicial):
 
-    valor_actual =  valor_inicial
+    interes_actual =  interes_inicial
 
-    valor_siguiente = valor_actual-valor_actual_neto(valor_actual)
-    cota_error =  abs (valor_siguiente-valor_actual)
+    interes_siguiente = interes_actual-valor_actual_neto(interes_actual)
+    #print("Valor siguiente", interes_siguiente)
+    cota_error =  abs (interes_siguiente-interes_actual)
+    interes_actual=interes_siguiente
+    #print("Error", cota_error)
 
-    while((abs(100*cota_error/valor_siguiente)) > error_porcentual):
-        #valor_temporal = valor_inicial
-        valor_siguiente = valor_actual-valor_actual_neto(valor_actual)
-        cota_error =  abs (valor_siguiente-valor_actual)
+    while((abs(100*cota_error/interes_siguiente)) > error_porcentual):
+        interes_siguiente = interes_actual-valor_actual_neto(interes_actual)
+        cota_error =  abs (interes_siguiente-interes_actual)
+        interes_actual=interes_siguiente
         print(cota_error)
 
-    return valor_siguiente
+    print("Error relativo", abs(100*cota_error/interes_siguiente))
+
+    return interes_siguiente
 
 
 def TP1():
