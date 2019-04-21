@@ -7,10 +7,10 @@ def pendiente_secante_van(izquierda, derecha):
     return = derecha - dividendo/divisor
 
 
-def secante_van (izquierda, derecha, cota_error_porcentual)
+def secante_van(izquierda, derecha, cota_error_porcentual):
 
     error = 100 #inicio en  un valor suficiente para que entre al while
-    while( 100*error > cota_error_porcentual )
+    while( 100*error > cota_error_porcentual ):
         actual = pendiente_secante_van (izquierda, derecha)
         izquierda = derecha
         derecha = actual

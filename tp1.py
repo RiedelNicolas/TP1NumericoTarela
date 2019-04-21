@@ -53,6 +53,31 @@ def punto_fijo_van(error_porcentual, interes_inicial):
     return interes_siguiente
 
 
+
+def pendiente_secante_van(ultimo_interes, anteultimo_interes):
+    dividendo = valor_actual_neto(ultimo_interes) - valor_actual_neto (anteultimo_interes)
+    divisor = ultimo_interes - anteultimo_interes
+    return = dividendo/divisor
+
+
+aca ameo: atom://teletype/portal/ab276839-f7c6-4c92-aaae-50b20eb4491e
+
+
+def secante_van(ultimo_interes, anteultimo_interes, cota_error_porcentual):
+
+    error = 100 #inicio en  un valor suficiente para que entre al while
+    while( 100*error > cota_error_porcentual ):
+        actual = pendiente_secante_van (ultimo_interes, anteultimo_interes)
+        ultimo_interes = anteultimo_interes
+        anteultimo_interes = actual
+        error = abs (actual - anteultimo_interes)
+
+    return actual
+
+
+
+
+
 def TP1():
     print(inversion_inicial_en_dolares*45)
     interes_biseccion=biseccion_van(5)
