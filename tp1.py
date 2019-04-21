@@ -63,13 +63,13 @@ def pendiente_secante_van(ultimo_interes, anteultimo_interes):
 
 def secante_van(ultimo_interes, anteultimo_interes, cota_error_porcentual):
 
-    siguiente_interes = ultimo_interes- valor_actual_neto(ultimo_interes)*pendiente_secante_van (ultimo_interes, anteultimo_interes)
+    siguiente_interes = ultimo_interes- valor_actual_neto(ultimo_interes)/pendiente_secante_van (ultimo_interes, anteultimo_interes)
     error = abs (siguiente_interes - ultimo_interes)
     anteultimo_interes = ultimo_interes
     ultimo_interes = siguiente_interes
 
-    while( abs(100*error/siguiente_interes) > cota_error_porcentual ):
-        siguiente_interes = ultimo_interes- valor_actual_neto(ultimo_interes)*pendiente_secante_van (ultimo_interes, anteultimo_interes)
+    while(abs(100*error/siguiente_interes) > cota_error_porcentual):
+        siguiente_interes = ultimo_interes- valor_actual_neto(ultimo_interes)/pendiente_secante_van (ultimo_interes, anteultimo_interes)
         error = abs (siguiente_interes - ultimo_interes)
         #print(abs(100*error/siguiente_interes))
         anteultimo_interes = ultimo_interes
