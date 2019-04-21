@@ -68,18 +68,14 @@ def secante_van(ultimo_interes, anteultimo_interes, cota_error_porcentual):
     anteultimo_interes = ultimo_interes
     ultimo_interes = siguiente_interes
 
-    #error = 100 #inicio en  un valor suficiente para que entre al while
-    while( (100*error/siguiente_interes) > cota_error_porcentual ):
+    while( abs(100*error/siguiente_interes) > cota_error_porcentual ):
         siguiente_interes = ultimo_interes- valor_actual_neto(ultimo_interes)*pendiente_secante_van (ultimo_interes, anteultimo_interes)
         error = abs (siguiente_interes - ultimo_interes)
+        #print(abs(100*error/siguiente_interes))
         anteultimo_interes = ultimo_interes
         ultimo_interes = siguiente_interes
 
     return siguiente_interes
-
-
-
-
 
 def TP1():
     print(inversion_inicial_en_dolares*45)
