@@ -160,5 +160,4 @@ def TP1():
     p_secante=convergencia(errores_secante[len(errores_secante)-1], errores_secante[len(errores_secante)-2], errores_secante[len(errores_secante)-3])
     print("Convergencia secante: ", p_secante)
 
-
 TP1()
