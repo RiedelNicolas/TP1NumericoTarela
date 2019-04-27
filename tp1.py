@@ -1,9 +1,6 @@
-#!/usr/bin/env python3.7
 import math
 from constant import *
 import csv
-#from decimal import *
-#from matplotlib.pyplot import *
 
 #inversion>0
 def valor_actual_neto(interes, inversion_en_pesos=inversion_inicial_en_dolares*45, flujo_de_caja=flujo_de_caja, años=VIDA_UTIL_PROYECTO):
@@ -30,7 +27,6 @@ def biseccion_con_errores(error_porcentual, funcion=valor_actual_neto):
     interes_medio_anterior=interes_medio
     cota_de_error=(interes_mayor-interes_menor)/2
     errores.append(cota_de_error)
-    #cota_de_error_previa=cota_de_error
 
     while((100*cota_de_error/interes_medio)>error_porcentual):
         if (funcion(interes_menor)*funcion(interes_medio)>0):
@@ -39,7 +35,6 @@ def biseccion_con_errores(error_porcentual, funcion=valor_actual_neto):
             interes_mayor=interes_medio
         interes_medio_anterior=interes_medio
         interes_medio=(interes_mayor+interes_menor)/2
-        #cota_de_error_previa=cota_de_error
         cota_de_error=(interes_mayor-interes_menor)/2
         errores.append(cota_de_error)
 
@@ -59,12 +54,10 @@ def punto_fijo_con_errores(error_porcentual, interes_inicial, funcion=valor_actu
     interes_siguiente = interes_actual-funcion(interes_actual)
     cota_error =  abs (interes_siguiente-interes_actual)
     errores.append(cota_error)
-    #cota_error_previa=cota_error
     interes_actual=interes_siguiente
 
     while((abs(100*cota_error/interes_siguiente)) > error_porcentual):
         interes_siguiente = interes_actual-funcion(interes_actual)
-        #cota_error_previa=cota_error
         cota_error =  abs (interes_siguiente-interes_actual)
         errores.append(cota_error)
         interes_actual=interes_siguiente
@@ -90,14 +83,12 @@ def secante_con_errores(ultimo_interes, anteultimo_interes, cota_error_porcentua
 
     siguiente_interes = ultimo_interes- funcion(ultimo_interes)/pendiente_secante (ultimo_interes, anteultimo_interes, funcion)
     error = abs (siguiente_interes - ultimo_interes)
-    #error_previo=error
     errores.append(error)
     anteultimo_interes = ultimo_interes
     ultimo_interes = siguiente_interes
 
     while(abs(100*error/siguiente_interes) > cota_error_porcentual):
         siguiente_interes = ultimo_interes- funcion(ultimo_interes)/pendiente_secante (ultimo_interes, anteultimo_interes, funcion)
-        #error_previo=error
         error = abs (siguiente_interes - ultimo_interes)
         errores.append(error)
         anteultimo_interes = ultimo_interes
@@ -106,89 +97,77 @@ def secante_con_errores(ultimo_interes, anteultimo_interes, cota_error_porcentua
     return siguiente_interes,errores
 
 def secante(ultimo_interes, anteultimo_interes, cota_error_porcentual, funcion=valor_actual_neto):
-
     interes,errores=secante_con_errores(ultimo_interes, anteultimo_interes, cota_error_porcentual, funcion)
     return interes
 
 
 def convergencia(ultimo_error,error_anterior, anteultimo_error):
-
-    #return round(math.log(ultimo_error/error_anterior)/math.log(error_anterior/anteultimo_error))
-
     p=math.log(ultimo_error/error_anterior)/math.log(error_anterior/anteultimo_error)
-
     landa= ultimo_error/(error_anterior**p)
 
     return p,landa
 
 
 def exportar_errores(nombre_archivo,errores):
-
     with open(nombre_archivo+".csv", "w") as archivo_errores:
         writer=csv.writer(archivo_errores)
-
         listas_errores=map(lambda x:[x, math.log(x)], errores)
-
         for error in listas_errores:
             writer.writerow(error)
 
 
 
-def TP1():
-    print(inversion_inicial_en_dolares*45)
 
-    #BISECCION
-
+def operar_con_biseccion():
     interes_biseccion, interes_biseccion_anterior=biseccion(5)
     print("Interes biseccion anterior:",interes_biseccion_anterior)
     print("Interes biseccion:",interes_biseccion)
     print("VAN biseccion:", valor_actual_neto(interes_biseccion))
 
-    #PUNTO FIJO
-
-    interes_punto_fijo=punto_fijo(0.1, interes_biseccion)
-    print("Interes punto fijo:", interes_punto_fijo)
-    print("VAN punto fijo:", valor_actual_neto(interes_punto_fijo))
-
-    #SECANTE
-
-    interes_secante=secante(interes_biseccion, interes_biseccion_anterior, 0.1)
-    print("Interes secante:", interes_secante)
-    print("VAN secante:", valor_actual_neto(interes_secante))
-
-
     #ERRORES BISECCION
     interes_biseccion, interes_biseccion_anterior, errores_biseccion=biseccion_con_errores(0.0000001)
     exportar_errores("errores_biseccion",errores_biseccion)
-    #print(errores_biseccion)
-
-
-    #ERRORES PUNTO FIJO
-
-    #poner una semilla que converja
-    interes_punto_fijo, errores_pto_fijo=punto_fijo_con_errores(0.00000001, 1.75, funcion_alternativa)
-    #exportar_errores("errores_punto_fijo",errores_pto_fijo)
-    print(errores_pto_fijo)
-
-    #ERRORES SECANTE
-    #interes_secante,errores_secante=secante_con_errores(interes_biseccion, interes_biseccion_anterior, 0.0000000000001)
-    #interes_secante,errores_secante=secante_con_errores(0.00001,0.9, 0.0000000000001)
-    interes_secante,errores_secante=secante_con_errores(0.00001,1, 0.00000001)
-    exportar_errores("errores_secante",errores_secante)
-    #print(errores_secante)
-
-
 
     p_biseccion, landa_van_biseccion=convergencia(errores_biseccion[len(errores_biseccion)-1], errores_biseccion[len(errores_biseccion)-2], errores_biseccion[len(errores_biseccion)-3])
     print("Convergencia biseccion: ", p_biseccion, " con landa van: ", landa_van_biseccion)
 
+    return interes_biseccion, interes_biseccion_anterior
+
+
+def operar_con_punto_fijo(interes_biseccion):
+    interes_punto_fijo=punto_fijo(0.1, interes_biseccion)
+    print("Interes punto fijo:", interes_punto_fijo)
+    print("VAN punto fijo:", valor_actual_neto(interes_punto_fijo))
+
+    #ERRORES PUNTO FIJO
+    interes_punto_fijo, errores_pto_fijo=punto_fijo_con_errores(0.00000001, 1.75, funcion_alternativa)
+    exportar_errores("errores_punto_fijo",errores_pto_fijo)
+
     p_pto_fijo, landa_pto_fijo_biseccion=convergencia(errores_pto_fijo[len(errores_pto_fijo)-1], errores_pto_fijo[len(errores_pto_fijo)-2], errores_pto_fijo[len(errores_pto_fijo)-3])
     print("Convergencia punto fijo: ", p_pto_fijo, " con landa van: ", landa_pto_fijo_biseccion)
+
+
+
+def operar_con_secante(interes_biseccion, interes_biseccion_anterior):
+    interes_secante=secante(interes_biseccion, interes_biseccion_anterior, 0.1)
+    print("Interes secante:", interes_secante)
+    print("VAN secante:", valor_actual_neto(interes_secante))
+
+    #ERRORES SECANTE
+    interes_secante,errores_secante=secante_con_errores(0.00001,1, 0.00000001)
+    exportar_errores("errores_secante",errores_secante)
 
     p_secante, landa_secante_biseccion=convergencia(errores_secante[len(errores_secante)-1], errores_secante[len(errores_secante)-2], errores_secante[len(errores_secante)-3])
     print("Convergencia secante: ", p_secante, " con landa van: ", landa_secante_biseccion)
 
-    print("funcion alternativa", funcion_alternativa(1.92178))
+
+
+def TP1():
+    #print(inversion_inicial_en_dolares*45)
+
+    interes_biseccion,interes_biseccion_anterior=operar_con_biseccion()
+    operar_con_punto_fijo(interes_biseccion)
+    operar_con_secante(interes_biseccion, interes_biseccion_anterior)
 
 
 TP1()
