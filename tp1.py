@@ -118,7 +118,7 @@ def exportar_errores(nombre_archivo,errores):
     with open(nombre_archivo+".csv", "w") as archivo_errores:
         writer=csv.writer(archivo_errores)
 
-        listas_errores=map(lambda x:[x], errores)
+        listas_errores=map(lambda x:[x, math.log(x)], errores)
 
         for error in listas_errores:
             writer.writerow(error)
