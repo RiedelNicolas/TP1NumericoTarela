@@ -40,17 +40,17 @@ def imprimir_interes_secante(error_porcentual,semilla):
 
     #ultimo_interes,anteultimo_interes=biseccion_van(5)
 
-    tope=int(0.07*(10**5))
+    tope=int(0.08*(10**4))
     #inicio=int(0.06*(10**7))
-    inicio=int(0.06*(10**5))
+    inicio=int(0.00*(10**4))
 
     for i in range(inicio, tope):
 
-        if i/100000==semilla:
+        if i/10000==semilla:
             continue
 
-        resultado=secante(semilla, i/100000, error_porcentual)
-        print(error_porcentual,"% de error ultima semilla", semilla, "anteultima semilla", i/100000, "resultado: " )
+        resultado=secante(semilla, i/10000, error_porcentual)
+        print(error_porcentual,"% de error ultima semilla", semilla, "anteultima semilla", i/10000, "resultado: " )
         print(resultado)
         print()
 
@@ -62,12 +62,12 @@ def imprimir_interes_secante(error_porcentual,semilla):
 def probar_convergencia_secante():
     print("pruebas de convergencia secante: ")
     #tope = 10**6
-    tope=int(0.07*(10**5))
+    tope=int(0.08*(10**4))
     #inicio=int(0.06*(10**7))
-    inicio=int(0*(10**5))
+    inicio=int(0*(10**4))
 
     for i in range(inicio,tope):
-        resultado=imprimir_interes_secante(0.00000001,i/100000)
+        resultado=imprimir_interes_secante(0.00000001,i/10000)
         #if abs(resultado)<0.1:
             #print("Empezo a converger en: ", resultado)
             #break
