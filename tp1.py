@@ -1,6 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.7
 import math
 from constant import *
+import csv
 #from decimal import *
 #from matplotlib.pyplot import *
 
@@ -112,6 +113,16 @@ def convergencia(ultimo_error,error_anterior, anteultimo_error):
     return math.log(ultimo_error/error_anterior)/math.log(error_anterior/anteultimo_error)
 
 
+def exportar_errores(nombre_archivo,errores):
+
+    with open(nombre_archivo+".csv", "w") as archivo_errores:
+        writer=csv.writer(archivo_errores)
+
+        listas_errores=map(lambda x:[x], errores)
+
+        for error in listas_errores:
+            writer.writerow(error)
+
 def TP1():
     print(inversion_inicial_en_dolares*45)
 
@@ -137,19 +148,22 @@ def TP1():
 
     #ERRORES BISECCION
     interes_biseccion, interes_biseccion_anterior, errores_biseccion=biseccion_van_con_errores(0.0000001)
+    exportar_errores("errores_biseccion",errores_biseccion)
     #print(errores_biseccion)
+
 
     #ERRORES PUNTO FIJO
 
     #poner una semilla que converja
     interes_punto_fijo, errores_pto_fijo=punto_fijo_van_con_errores(0.1, interes_biseccion)
+    exportar_errores("errores_punto_fijo",errores_pto_fijo)
     #print(errores_pto_fijo)
 
     #ERRORES SECANTE
-    #interes_biseccion, interes_biseccion_anterior, errores_biseccion=biseccion_van_con_errores(70)
     #interes_secante,errores_secante=secante_van_con_errores(interes_biseccion, interes_biseccion_anterior, 0.0000000000001)
     #interes_secante,errores_secante=secante_van_con_errores(0.00001,0.9, 0.0000000000001)
     interes_secante,errores_secante=secante_van_con_errores(0.00001,1, 0.00000001)
+    exportar_errores("errores_secante",errores_secante)
     print(errores_secante)
 
 
