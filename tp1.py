@@ -148,8 +148,11 @@ def TP1():
     #ERRORES SECANTE
     #interes_biseccion, interes_biseccion_anterior, errores_biseccion=biseccion_van_con_errores(70)
     #interes_secante,errores_secante=secante_van_con_errores(interes_biseccion, interes_biseccion_anterior, 0.0000000000001)
-    interes_secante,errores_secante=secante_van_con_errores(0.00001,0.9, 0.0000000000001)
+    #interes_secante,errores_secante=secante_van_con_errores(0.00001,0.9, 0.0000000000001)
+    interes_secante,errores_secante=secante_van_con_errores(0.00001,1, 0.00000001)
     print(errores_secante)
+
+
 
     p_biseccion=convergencia(errores_biseccion[len(errores_biseccion)-1], errores_biseccion[len(errores_biseccion)-2], errores_biseccion[len(errores_biseccion)-3])
     print("Convergencia biseccion: ", p_biseccion)

@@ -40,13 +40,17 @@ def imprimir_interes_secante(error_porcentual,semilla):
 
     #ultimo_interes,anteultimo_interes=biseccion_van(5)
 
-    tope=int(0.07*(10**4))
+    tope=int(0.07*(10**5))
     #inicio=int(0.06*(10**7))
-    inicio=int(0.06*(10**4))
+    inicio=int(0.06*(10**5))
 
     for i in range(inicio, tope):
-        resultado=secante_van(semilla, i/10000, error_porcentual)
-        print(error_porcentual,"% de error ultima semilla", semilla, "anteultima semilla", i/10000, "resultado: " )
+
+        if i/100000==semilla:
+            continue
+
+        resultado=secante_van(semilla, i/100000, error_porcentual)
+        print(error_porcentual,"% de error ultima semilla", semilla, "anteultima semilla", i/100000, "resultado: " )
         print(resultado)
         print()
 
