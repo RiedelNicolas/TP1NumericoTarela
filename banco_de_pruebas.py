@@ -40,7 +40,7 @@ def imprimir_interes_secante(error_porcentual,semilla):
 
     #ultimo_interes,anteultimo_interes=biseccion_van(5)
 
-    tope=int(0.08*(10**4))
+    tope=int(1*(10**4))
     #inicio=int(0.06*(10**7))
     inicio=int(0.00*(10**4))
 
@@ -62,7 +62,7 @@ def imprimir_interes_secante(error_porcentual,semilla):
 def probar_convergencia_secante():
     print("pruebas de convergencia secante: ")
     #tope = 10**6
-    tope=int(0.08*(10**4))
+    tope=int(1*(10**4))
     #inicio=int(0.06*(10**7))
     inicio=int(0*(10**4))
 
