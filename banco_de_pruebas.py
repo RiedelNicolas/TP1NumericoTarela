@@ -3,7 +3,7 @@ from tp1 import*
 def imprimir_interes_fijo(error_porcentual, interes):
 
     print(error_porcentual,"% de error semilla", interes, "resultado: " )
-    resultado=punto_fijo_van(error_porcentual,interes)
+    resultado=punto_fijo(error_porcentual,interes)
     print(resultado)
     print()
     return resultado
@@ -49,13 +49,13 @@ def imprimir_interes_secante(error_porcentual,semilla):
         if i/100000==semilla:
             continue
 
-        resultado=secante_van(semilla, i/100000, error_porcentual)
+        resultado=secante(semilla, i/100000, error_porcentual)
         print(error_porcentual,"% de error ultima semilla", semilla, "anteultima semilla", i/100000, "resultado: " )
         print(resultado)
         print()
 
 
-    #resultado=secante_van(semilla, ultimo_interes, error_porcentual)
+    #resultado=secante(semilla, ultimo_interes, error_porcentual)
     return resultado
 
 
