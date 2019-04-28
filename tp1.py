@@ -174,7 +174,17 @@ def van_precio_electricidad_duplicado(interes):
 def van_factor_de_uso_aumentado(interes):
     return valor_actual_neto(interes,flujo_de_caja=(ahorro_energia*(0.2/0.18)+ahorro_potencia-COSTOS_OPERACION)*(1-IMPUESTO_GANANCIAS))
 
+def  van_cinco_anos_sin_impuestos(interes):
+    inversion_en_pesos=inversion_inicial_en_dolares*45
+    años=VIDA_UTIL_PROYECTO
 
+    van = -inversion_en_pesos
+    for año in range(1,años+1):
+        if ( año<=5 ) :
+            van += flujo_de_caja_sin_impuestos/((1+interes)**año)
+        else :
+            van += flujo_de_caja/((1+interes)**año)
+    return van
 #FALTA HACER LO DE NO PAGAR IMPUESTOS POR 5 AÑOS
 
 def secante_van_modificado(van_modificado):
@@ -188,13 +198,13 @@ def operar_con_valores_modificados():
     print("Interes con impuesto nulo: ", secante_van_modificado(van_impuesto_nulo))
     print("Interes con precio electricidad duplicado: ", secante_van_modificado(van_precio_electricidad_duplicado))
     print("Interes con factor de uso aumentado: ", secante_van_modificado(van_factor_de_uso_aumentado))
-
+    print("Interes con primeros 5 años sin impuestos", secante_van_modificado(van_cinco_anos_sin_impuestos))
     #FALTA VAN NO COBRA IMPUESTO LOS PRIMEROS 5 AÑOS
 
 
 
 def TP1():
-    #print(inversion_inicial_en_dolares*45)
+    print(inversion_inicial_en_dolares*45)
 
     interes_biseccion,interes_biseccion_anterior=operar_con_biseccion()
     operar_con_punto_fijo(interes_biseccion)
