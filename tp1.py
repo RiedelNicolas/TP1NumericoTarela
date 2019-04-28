@@ -165,8 +165,9 @@ def operar_con_secante(interes_biseccion, interes_biseccion_anterior):
 def van_inversion_reducida(interes):
     return valor_actual_neto(interes, inversion_inicial_en_dolares*45*0.7)
 
+
 def van_impuesto_nulo(interes):
-    return valor_actual_neto(interes, flujo_de_caja=flujo_de_caja/(1-IMPUESTO_GANANCIAS))
+    return valor_actual_neto(interes, flujo_de_caja= flujo_de_caja_sin_impuestos)
 
 def van_precio_electricidad_duplicado(interes):
     return valor_actual_neto(interes,flujo_de_caja=(ahorro_energia*2+ahorro_potencia-COSTOS_OPERACION)*(1-IMPUESTO_GANANCIAS))
@@ -199,9 +200,10 @@ def operar_con_valores_modificados():
     print("Interes con precio electricidad duplicado: ", secante_van_modificado(van_precio_electricidad_duplicado))
     print("Interes con factor de uso aumentado: ", secante_van_modificado(van_factor_de_uso_aumentado))
     print("Interes con primeros 5 años sin impuestos", secante_van_modificado(van_cinco_anos_sin_impuestos))
-    #FALTA VAN NO COBRA IMPUESTO LOS PRIMEROS 5 AÑOS
-
-
+    print("Con precios duplicados ahorro de energia:", ahorro_energia*2)
+    print("Con factor de uso aumentado: ", ahorro_energia*(0.2/0.18) )
+    print("FCF sin impuestos: ", flujo_de_caja_sin_impuestos)
+    print("FCF regular", flujo_de_caja)
 
 def TP1():
     print(inversion_inicial_en_dolares*45)

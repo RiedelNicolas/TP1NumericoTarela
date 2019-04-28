@@ -17,4 +17,4 @@ ahorro_potencia=POTENCIA_TOTAL_INSTALADA * 0.3 *COSTO_POTENCIA_CONSUMIDA * MESES
 ahorros=ahorro_energia+ahorro_potencia
 
 flujo_de_caja= (ahorros-COSTOS_OPERACION)*(1-IMPUESTO_GANANCIAS)
-flujo_de_caja_sin_impuestos= (ahorros-COSTOS_OPERACION)
+flujo_de_caja_sin_impuestos = (ahorros-COSTOS_OPERACION)
