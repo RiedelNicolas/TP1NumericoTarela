@@ -65,7 +65,7 @@ def probar_convergencia_secante():
     #inicio=int(0.06*(10**7))
     #inicio=int(0*(10**4))
     #inicio=int(0.276*(10**4))
-    inicio=int(0.277*(10**4))
+    inicio=int(0.7*(10**4))
     for i in range(inicio,tope):
         #resultado=imprimir_interes_secante(0.00000001,i/10000)
         resultado=imprimir_interes_secante(0.00001,i/10000)
