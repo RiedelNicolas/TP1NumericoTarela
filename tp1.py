@@ -38,6 +38,8 @@ def biseccion_con_errores(error_porcentual, funcion=valor_actual_neto):
         cota_de_error=(interes_mayor-interes_menor)/2
         errores.append(cota_de_error)
 
+    print("Error biseccion: ", errores[len(errores)-1])
+
     return interes_medio,interes_medio_anterior,errores
 
 def biseccion(error_porcentual, funcion=valor_actual_neto):
@@ -93,6 +95,8 @@ def secante_con_errores(ultimo_interes, anteultimo_interes, cota_error_porcentua
         errores.append(error)
         anteultimo_interes = ultimo_interes
         ultimo_interes = siguiente_interes
+
+    print("Error secante: ", errores[len(errores)-1])
 
     return siguiente_interes,errores
 
@@ -186,7 +190,6 @@ def  van_cinco_anos_sin_impuestos(interes):
         else :
             van += flujo_de_caja/((1+interes)**año)
     return van
-#FALTA HACER LO DE NO PAGAR IMPUESTOS POR 5 AÑOS
 
 def secante_van_modificado(van_modificado):
     ultimo_interes,anteultimo_interes=biseccion(5,van_modificado)
