@@ -5,7 +5,7 @@ COSTO_ELECTRICIDAD_CONSUMIDA=3.2#$/kWh
 COSTO_POTENCIA_CONSUMIDA=610#$/kW.mes
 COSTOS_OPERACION=10000#$/año
 VIDA_UTIL_PROYECTO=20#años
-CAMBIO=45#$/usd
+CAMBIO=45#$/usdCOSTO_POTENCIA_A_INSTALAR
 POTENCIA_TOTAL_INSTALADA=30#kWp
 HORAS_POR_AÑO=8760
 MESES_POR_AÑO=12
@@ -18,3 +18,11 @@ ahorros=ahorro_energia+ahorro_potencia
 
 flujo_de_caja= (ahorros-COSTOS_OPERACION)*(1-IMPUESTO_GANANCIAS)
 flujo_de_caja_sin_impuestos = (ahorros-COSTOS_OPERACION)
+
+#DOMICILIARIA
+POT_INSTALADA_DOM = 1
+COSTO_ELECTRICIDAD_DOM = 3.025
+
+inversion_domiciliaria = POT_INSTALADA_DOM * COSTO_POTENCIA_A_INSTALAR * CAMBIO
+ahorros_domicilarios = POT_INSTALADA_DOM * HORAS_POR_AÑO * factor_de_uso * COSTO_ELECTRICIDAD_DOM
+flujo_de_caja_dom = ahorros_domicilarios

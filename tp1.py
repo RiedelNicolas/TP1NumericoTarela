@@ -10,6 +10,16 @@ def valor_actual_neto(interes, inversion_en_pesos=inversion_inicial_en_dolares*4
 
     return van
 
+
+def van_domiciliario(interes):
+
+        van = -inversion_domiciliaria #en pesos
+        for año in range(1,VIDA_UTIL_PROYECTO+1):
+            van += flujo_de_caja_dom/((1+interes)**año)
+
+        return van
+
+
 def funcion_alternativa(x):
     return (x**2)/4-math.sin(x)
 
@@ -208,7 +218,8 @@ def operar_con_secante(interes_biseccion, interes_biseccion_anterior):
 
     p_secante, landa_secante_biseccion=convergencia(errores_secante[len(errores_secante)-1], errores_secante[len(errores_secante)-2], errores_secante[len(errores_secante)-3])
     print("Convergencia secante: ", p_secante, " con landa van: ", landa_secante_biseccion)
-
+    #residencial (punto ocho)
+    print("VAN domilicario mediante secante: ", van_domiciliario(interes_secante) )
 
 
 def van_inversion_reducida(interes):
@@ -236,6 +247,7 @@ def  van_cinco_anos_sin_impuestos(interes):
             van += flujo_de_caja/((1+interes)**año)
     return van
 
+
 def secante_van_modificado(van_modificado):
     ultimo_interes,anteultimo_interes=biseccion(5,van_modificado)
     return secante(ultimo_interes,anteultimo_interes,0.1,van_modificado)
@@ -253,6 +265,8 @@ def operar_con_valores_modificados():
     print("FCF sin impuestos: ", flujo_de_caja_sin_impuestos)
     print("FCF regular", flujo_de_caja)
 
+
+
 def TP1():
     print(inversion_inicial_en_dolares*45)
 
@@ -261,5 +275,6 @@ def TP1():
     operar_con_secante(interes_biseccion, interes_biseccion_anterior)
 
     operar_con_valores_modificados()
+
 
 TP1()
