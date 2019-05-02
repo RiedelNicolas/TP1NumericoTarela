@@ -255,9 +255,7 @@ def operar_con_secante(interes_biseccion, interes_biseccion_anterior):
     p_secante, landa_secante_biseccion=convergencia(errores_secante[len(errores_secante)-1], errores_secante[len(errores_secante)-2], errores_secante[len(errores_secante)-3])
     print("Convergencia secante: ", p_secante, " con landa van: ", landa_secante_biseccion)
 
-    #residencial (punto ocho)
-    #utilizo el interes significativo de la secante
-    print("VAN domilicario mediante secante: ", van_domiciliario(0.0654099917) )
+
 
 
 def van_inversion_reducida(interes):
@@ -303,6 +301,9 @@ def operar_con_valores_modificados():
     print("FCF sin impuestos: ", flujo_de_caja_sin_impuestos)
     print("FCF regular", flujo_de_caja)
 
+    #residencial (punto ocho)
+    #utilizo el interes significativo de la secante
+    print("Interes VAN domiciliario: ", secante_van_modificado(van_domiciliario))
 
 
 def TP1():
