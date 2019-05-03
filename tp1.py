@@ -1,6 +1,6 @@
 #Alumnos:
 #Cambiano Agustín, padrón: 102291
-#Riedel Nicolás padrón: 102291
+#Riedel Nicolás padrón: 102130
 
 
 import math
@@ -314,7 +314,7 @@ def TP1():
 
     print("Alumnos:")
     print("Cambiano Agustín, padrón: 102291")
-    print("Riedel Nicolás padrón: 102291")
+    print("Riedel Nicolás padrón: 102130")
     print()
 
     interes_biseccion,interes_biseccion_anterior=operar_con_biseccion()
