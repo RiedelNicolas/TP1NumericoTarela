@@ -1,7 +1,8 @@
 #Alumnos:
 #Cambiano Agustín, padrón: 102291
 #Riedel Nicolás padrón: 102130
-
+#Curso: Tarela
+#Fecha:3/5/2019
 
 import math
 import csv
