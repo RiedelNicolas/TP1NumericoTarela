@@ -1,5 +1,9 @@
+#Alumnos:
+#Cambiano Agustín, padrón: 102291
+#Riedel Nicolás padrón: 102291
+
+
 import math
-from constant import *
 import csv
 
 
@@ -307,7 +311,11 @@ def operar_con_valores_modificados():
 
 
 def TP1():
-    print(inversion_inicial_en_dolares*45)
+
+    print("Alumnos:")
+    print("Cambiano Agustín, padrón: 102291")
+    print("Riedel Nicolás padrón: 102291")
+    print()
 
     interes_biseccion,interes_biseccion_anterior=operar_con_biseccion()
     operar_con_punto_fijo(interes_biseccion)
